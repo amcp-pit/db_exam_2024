@@ -37,9 +37,15 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 CREATE TABLE IF NOT EXISTS public.plane (
     plane_id INT PRIMARY KEY,
     model_id INT,
-    point POINT,
-    vector1 POINT,
-    vector2 POINT,
+    point_x DOUBLE PRECISION,
+    point_y DOUBLE PRECISION,
+    point_z DOUBLE PRECISION,
+    vector1_x DOUBLE PRECISION,
+    vector1_y DOUBLE PRECISION,
+    vector1_z DOUBLE PRECISION,
+    vector2_x DOUBLE PRECISION,
+    vector2_y DOUBLE PRECISION,
+    vector2_z DOUBLE PRECISION,
 
     FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
