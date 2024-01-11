@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS public.sketch (
     model_id INT,
     plane_id INT,
 
-    FOREIGN KEY (model_id) REFERENCES model(model_id),
-    FOREIGN KEY (plane_id) REFERENCES plane(plane_id)
+    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -94,8 +94,8 @@ CREATE TABLE IF NOT EXISTS public.object  (
     name VARCHAR(128),
 
     FOREIGN KEY (object_type_id) REFERENCES object_type(object_type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (object_id) REFERENCES entity(entity_id)  ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (parent_id) REFERENCES "object"(object_id)  ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES "object"(object_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
