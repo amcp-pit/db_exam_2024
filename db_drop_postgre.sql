@@ -1,26 +1,17 @@
--- Удаление таблицы Список доступа (AccessList)
-DROP TABLE IF EXISTS AccessList;
+DROP TABLE IF EXISTS "access_list";
 
--- Удаление таблицы Ограничение (Constraint)
-DROP TABLE IF EXISTS ConstraintTable;
+DROP TABLE IF EXISTS "constraint";
 
--- Удаление таблицы Объект (Object)
-DROP TABLE IF EXISTS Object;
+DROP TABLE IF EXISTS "object";
 
--- Удаление таблицы Примитив (Entity)
-DROP TABLE IF EXISTS Entity;
+DROP TABLE IF EXISTS "entity";
 
--- Удаление таблицы Параметр (Parameter)
-DROP TABLE IF EXISTS Parameter;
+DROP TABLE IF EXISTS "param";
 
--- Удаление таблицы Чертеж (Sketch)
-DROP TABLE IF EXISTS Sketch;
+DROP TABLE IF EXISTS "sketch";
 
--- Удаление таблицы Плоскость (Plane)
-DROP TABLE IF EXISTS Plane;
+DROP TABLE IF EXISTS "plane";
 
--- Удаление таблицы Модель (Model)
-DROP TABLE IF EXISTS Model;
+DROP TABLE IF EXISTS "model";
 
--- Удаление таблицы Пользователь (User)
-DROP TABLE IF EXISTS "User";
+DROP TABLE IF EXISTS "user";
