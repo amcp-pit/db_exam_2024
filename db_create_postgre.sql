@@ -1,16 +1,16 @@
 -- Table user
 CREATE TABLE IF NOT EXISTS public.user (
-    user_id INT PRIMARY KEY,
+    user_id INT NOT NULL PRIMARY KEY,
     username VARCHAR(128) NOT NULL
 );
 
 
 -- Table model
 CREATE TABLE IF NOT EXISTS public.model (
-    model_id INT PRIMARY KEY,
-    creator_id INT,
-    last_editor_id INT,
-    last_update_time TIMESTAMP,
+    model_id INT NOT NULL PRIMARY KEY,
+    creator_id INT NOT NULL,
+    last_editor_id INT NOT NULL,
+    last_update_time TIMESTAMP NOT NULL,
 
     FOREIGN KEY (creator_id) REFERENCES "user"(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (last_editor_id) REFERENCES "user"(user_id) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS public.model (
 
 -- Table access_list
 CREATE TABLE IF NOT EXISTS public.access_list (
-    user_id INT,
-    model_id INT,
+    user_id INT NOT NULL,
+    model_id INT NOT NULL,
     read_permission BOOLEAN,
     write_permission BOOLEAN,
 
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 
 -- Table plane
 CREATE TABLE IF NOT EXISTS public.plane (
-    plane_id INT PRIMARY KEY,
-    model_id INT,
+    plane_id INT NOT NULL PRIMARY KEY,
+    model_id INT NOT NULL,
     point_x DOUBLE PRECISION,
     point_y DOUBLE PRECISION,
     point_z DOUBLE PRECISION,
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS public.plane (
 
 -- Table sketch
 CREATE TABLE IF NOT EXISTS public.sketch (
-    sketch_id INT PRIMARY KEY,
-    plane_id INT,
+    sketch_id INT NOT NULL PRIMARY KEY,
+    plane_id INT NOT NULL,
 
     FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
