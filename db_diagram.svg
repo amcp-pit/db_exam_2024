@@ -1,0 +1,598 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1104' height='766' viewBox='0 0 1104 766' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','unhighlight'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:13.0px; }
+  a text:hover        { fill:#0d196f; text-shadow: 0px 0px 6px #d0ce00; font-size:13px; font-weight: bold;}
+  text.highlight      { fill:#0d196f; text-shadow: 0px 0px 4px #eac533; font-size:13px; font-weight: bold;}
+  text.white          { fill:#ffffff; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#9c9a9a; }
+  text.legendTitle    { fill:#d65c68; font-weight:bold; }
+  text.legendSubTitle { fill:#717171; font-size:11px; }
+  path                { stroke:#857f70; stroke-width:1.45; fill:none; }
+  path.virtual        { stroke:#a67822; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.unhighlight    { stroke-width:10; opacity:0; }
+  path.highlight      { stroke-width:3; stroke:#0054c5; opacity:0.8; }
+  path.line           { stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+  rect.entity         { fill:#ffffff; stroke:#777; stroke-width:1;shape-rendering:crispEdges; filter:url(#shadow); }
+  line.delim          { stroke-width:1; shape-rendering:crispEdges; }
+  text.callout        { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:13.5px; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; }
+  rect.shape          { stroke:#bebdbd; stroke-width:0.5; }
+  rect.grp            { stroke:#a1a1a1; stroke-width:3; opacity:0.25; }
+  path.bgPattern      { fill:none;stroke-width:0.6;stroke:#e5e9ed; }
+</style>
+<defs>
+  <radialGradient id='layoutBgB' cx='100%' cy='100%' r='100%'  >
+    <stop offset='0%' stop-color='#dfdfdf' />
+    <stop offset='100%' stop-color='#f2f2f2' />
+  </radialGradient>
+  <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+    <rect width="100%" height="100%" fill="#f0f1f3" />
+    <path class='bgPattern' d='M 0 17.32 L 10 0 L 30 0 L 40 17.326 L 30 34.64 L 10 34.64 Z' />
+    <path class='bgPattern' d='M 40 17.32 L 60 17.32 Z' />
+  </pattern>
+  <!-- https://norbat.de/svg-pattern-3d-webmuster/ -->
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+    <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/>
+    <stop offset='100%' stop-color='#999999' stop-opacity='0' />
+  </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+    <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id="shadow" width="120%" height="120%">
+    <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#333" flood-opacity="0.2" />
+  </filter>
+  <!--
+  <filter id='shadow2' width='120%' height='120%'>
+    <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+    <feColorMatrix result='matrixOut' in='offOut'
+                   values='0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0' />
+    <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' />
+    <feBlend in='SourceGraphic' in2='blurOut' />
+  </filter>
+  -->
+  <filter id='fkShadow' height='130%'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+      <feMergeNode/> <!-- this contains the offset blurred image -->
+      <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' cx='5%' cy='5%' r='100%' >
+    <stop offset='0%' stop-color='#e4eeff' stop-opacity='1'/>
+    <stop offset='100%' stop-color='#c3d2ea' stop-opacity='1' />
+  </radialGradient>
+  <symbol id='calloutArrowDown' >
+    <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+    <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' >
+    <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+    <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' >
+    <g transform='scale(0.99)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+            d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+      <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+            style='fill:#ffe5a5;fill-opacity:1;stroke:#906b25;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='idx1' >
+    <g transform='scale(0.99)'>
+      <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.83'/>
+      <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+      <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='idx2' >
+    <g transform='scale(0.99)'>
+      <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+      <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#6a88cd;stroke:#5a72a8;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' >
+    <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='view' >
+    <g transform='scale(0.99)'>
+      <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+      <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+      <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+      <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+</defs>
+
+<defs>  <marker id='arrow0u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='arrow1u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='arrow0' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <circle cx='4.00' cy='4.00' r='2.67' style='fill:white;stroke:#5e554d;' />
+    <path d='M 16.00,0.00 L 8.00,4.00 L 16.00,8.00' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 16.00,0.00 L 8.00,4.00 L 16.00,8.00' />
+  </marker>
+  <marker id='foot0u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <circle cx='12.00' cy='4.00' r='2.67' style='fill:white;stroke:#5e554d;' />
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' />
+  </marker>
+  <marker id='foot0' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <circle cx='12.00' cy='4.00' r='2.67' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='foot1u' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 8.00,0.00 L 8.00, 8.00 z' />
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 8.00,0.00 L 8.00, 8.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='line_arrow' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='line_straight' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <linearGradient id='tbg_C1D8EE' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#E3F0FE' /> 
+     <stop offset='40%' stop-color='#CEE7FF' /> 
+     <stop offset='100%' stop-color='#B3CCE5' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Shape Colors == -->
+<!-- == Desktop == -->
+<rect x='1' y='1' width='1102' height='764' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#84827b; stroke-width:0.5;' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='230' height='56' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='25' class='legendTitle' >dbmodel</text> 
+  <a xlink:href='https://dbschema.com'><text x='20' y='39' class='legendSubTitle'><tspan>(c) DbSchema</tspan></text></a> 
+  <text x='20' y='53' class='legendSubTitle'><tspan>Hover columns to read the comments.</tspan></text> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Fk 'access_list_fk_access_list_user' == -->
+<path id='access_list_fk_access_list_user'  onmouseover="hghl(['access_list_fk_access_list_user','nadya.access_list.userid','nadya.user.userid'])" onmouseout="uhghl(['access_list_fk_access_list_user','nadya.access_list.userid','nadya.user.userid'])" transform='translate(8,0)' class='unhighlight' d='M 176,480L 24,480Q 16,480 16,472L 16,104Q 16,96 24,96L 32,96' >
+	<title>Fk fk_access_list_user
+access_list ref user ( userid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 176,480L 24,480Q 16,480 16,472L 16,104Q 16,96 24,96L 32,96' ><title>Fk fk_access_list_user
+access_list ref user ( userid )</title></path>
+<text x='150' y='475' transform='rotate(0 150,475)' class='relName'>userid</text>
+<!-- == Fk 'access_list_fk_access_list_model' == -->
+<path id='access_list_fk_access_list_model'  onmouseover="hghl(['access_list_fk_access_list_model','nadya.access_list.modelid','nadya.model.modelid'])" onmouseout="uhghl(['access_list_fk_access_list_model','nadya.access_list.modelid','nadya.model.modelid'])" transform='translate(8,0)' class='unhighlight' d='M 176,400L 168,400Q 160,400 160,392L 160,288' >
+	<title>Fk fk_access_list_model
+access_list ref model ( modelid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 176,400L 168,400Q 160,400 160,392L 160,288' ><title>Fk fk_access_list_model
+access_list ref model ( modelid )</title></path>
+<text x='139' y='395' transform='rotate(0 139,395)' class='relName'>modelid</text>
+<!-- == Fk 'access_list_fk_access_list_access_type' == -->
+<path id='access_list_fk_access_list_access_type'  onmouseover="hghl(['access_list_fk_access_list_access_type','nadya.access_list.access_type','nadya.access_type.accesstypeid'])" onmouseout="uhghl(['access_list_fk_access_list_access_type','nadya.access_list.access_type','nadya.access_type.accesstypeid'])" transform='translate(8,0)' class='unhighlight' d='M 176,464L 168,464Q 160,464 160,472L 160,520Q 160,528 168,528L 192,528' >
+	<title>Fk fk_access_list_access_type
+access_list ref access_type ( access_type -&gt; accesstypeid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 176,464L 168,464Q 160,464 160,472L 160,520Q 160,528 168,528L 192,528' ><title>Fk fk_access_list_access_type
+access_list ref access_type ( access_type -&gt; accesstypeid )</title></path>
+<text x='115' y='459' transform='rotate(0 115,459)' class='relName'>access_type</text>
+<!-- == Fk 'constr_param_fk_constr_param_param' == -->
+<path id='constr_param_fk_constr_param_param'  onmouseover="hghl(['constr_param_fk_constr_param_param','nadya.constr_param.paramid','nadya.param.paramid'])" onmouseout="uhghl(['constr_param_fk_constr_param_param','nadya.constr_param.paramid','nadya.param.paramid'])" transform='translate(8,0)' class='unhighlight' d='M 864,368L 440,368Q 432,368 432,376L 432,400' >
+	<title>Fk fk_constr_param_param
+constr_param ref param ( paramid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 864,368L 440,368Q 432,368 432,376L 432,400' ><title>Fk fk_constr_param_param
+constr_param ref param ( paramid )</title></path>
+<text x='826' y='363' transform='rotate(0 826,363)' class='relName'>paramid</text>
+<!-- == Fk 'constr_param_fk_constr_param_constraint' == -->
+<path id='constr_param_fk_constr_param_constraint'  onmouseover="hghl(['constr_param_fk_constr_param_constraint','nadya.constr_param.constrainid','nadya.constraint.constrainid'])" onmouseout="uhghl(['constr_param_fk_constr_param_constraint','nadya.constr_param.constrainid','nadya.constraint.constrainid'])" transform='translate(8,0)' class='unhighlight' d='M 896,304L 896,152Q 896,144 888,144L 880,144' >
+	<title>Fk fk_constr_param_constraint
+constr_param ref constraint ( constrainid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 896,304L 896,152Q 896,144 888,144L 880,144' ><title>Fk fk_constr_param_constraint
+constr_param ref constraint ( constrainid )</title></path>
+<text x='899' y='302' transform='rotate(270 899,302)' class='relName'>constrainid</text>
+<!-- == Fk 'constraint_fk_constraint_constr_type' == -->
+<path id='constraint_fk_constraint_constr_type'  onmouseover="hghl(['constraint_fk_constraint_constr_type','nadya.constraint.constrainid','nadya.constr_type.consttypeid'])" onmouseout="uhghl(['constraint_fk_constraint_constr_type','nadya.constraint.constrainid','nadya.constr_type.consttypeid'])" transform='translate(8,0)' class='unhighlight' d='M 880,96L 928,96' >
+	<title>Fk fk_constraint_constr_type
+constraint ref constr_type ( constrainid -&gt; consttypeid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1u)' marker-end='url(#arrow1u)'    d='M 880,96L 928,96' ><title>Fk fk_constraint_constr_type
+constraint ref constr_type ( constrainid -&gt; consttypeid )</title></path>
+<text x='889' y='91' transform='rotate(0 889,91)' class='relName'>constrainid</text>
+<!-- == Fk 'constraint_fk_constraint_entity' == -->
+<path id='constraint_fk_constraint_entity'  onmouseover="hghl(['constraint_fk_constraint_entity','nadya.constraint.constrainid','nadya.entity.entityid'])" onmouseout="uhghl(['constraint_fk_constraint_entity','nadya.constraint.constrainid','nadya.entity.entityid'])" transform='translate(8,0)' class='unhighlight' d='M 752,96L 560,96' >
+	<title>Fk fk_constraint_entity
+constraint ref entity ( constrainid -&gt; entityid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1u)' marker-end='url(#arrow1u)'    d='M 752,96L 560,96' ><title>Fk fk_constraint_entity
+constraint ref entity ( constrainid -&gt; entityid )</title></path>
+<text x='697' y='91' transform='rotate(0 697,91)' class='relName'>constrainid</text>
+<!-- == Fk 'entity_fk_entity_model' == -->
+<path id='entity_fk_entity_model'  onmouseover="hghl(['entity_fk_entity_model','nadya.entity.modelid','nadya.model.modelid'])" onmouseout="uhghl(['entity_fk_entity_model','nadya.entity.modelid','nadya.model.modelid'])" transform='translate(8,0)' class='unhighlight' d='M 480,160L 480,184Q 480,192 472,192L 176,192' >
+	<title>Fk fk_entity_model
+entity ref model ( modelid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 480,160L 480,184Q 480,192 472,192L 176,192' ><title>Fk fk_entity_model
+entity ref model ( modelid )</title></path>
+<text x='492' y='161' transform='rotate(90 492,161)' class='relName'>modelid</text>
+<!-- == Fk 'model_fk_model_user' == -->
+<path id='model_fk_model_user'  onmouseover="hghl(['model_fk_model_user','nadya.model.userid_own','nadya.user.userid'])" onmouseout="uhghl(['model_fk_model_user','nadya.model.userid_own','nadya.user.userid'])" transform='translate(8,0)' class='unhighlight' d='M 64,160L 64,128' >
+	<title>Fk fk_model_user
+model ref user ( userid_own -&gt; userid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 64,160L 64,128' ><title>Fk fk_model_user
+model ref user ( userid_own -&gt; userid )</title></path>
+<text x='67' y='158' transform='rotate(270 67,158)' class='relName'>userid_own</text>
+<!-- == Fk 'model_fk_model_user_0' == -->
+<path id='model_fk_model_user_0'  onmouseover="hghl(['model_fk_model_user_0','nadya.model.userid_modify','nadya.user.userid'])" onmouseout="uhghl(['model_fk_model_user_0','nadya.model.userid_modify','nadya.user.userid'])" transform='translate(8,0)' class='unhighlight' d='M 80,160L 80,128' >
+	<title>Fk fk_model_user_0
+model ref user ( userid_modify -&gt; userid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 80,160L 80,128' ><title>Fk fk_model_user_0
+model ref user ( userid_modify -&gt; userid )</title></path>
+<text x='83' y='158' transform='rotate(270 83,158)' class='relName'>userid_modify</text>
+<!-- == Fk 'object_fk_object_object' == -->
+<path id='object_fk_object_object'  onmouseover="hghl(['object_fk_object_object','nadya.object.parentid','nadya.object.objectid'])" onmouseout="uhghl(['object_fk_object_object','nadya.object.parentid','nadya.object.objectid'])" transform='translate(8,0)' class='unhighlight' d='M 560,240L 568,240Q 576,240 576,232L 576,200Q 576,192 568,192L 552,192Q 544,192 544,200L 544,208' >
+	<title>Fk fk_object_object
+object ref object ( parentid -&gt; objectid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 560,240L 568,240Q 576,240 576,232L 576,200Q 576,192 568,192L 552,192Q 544,192 544,200L 544,208' ><title>Fk fk_object_object
+object ref object ( parentid -&gt; objectid )</title></path>
+<text x='569' y='235' transform='rotate(0 569,235)' class='relName'>parentid</text>
+<!-- == Fk 'object_fk_object_entity' == -->
+<path id='object_fk_object_entity'  onmouseover="hghl(['object_fk_object_entity','nadya.object.objectid','nadya.entity.entityid'])" onmouseout="uhghl(['object_fk_object_entity','nadya.object.objectid','nadya.entity.entityid'])" transform='translate(8,0)' class='unhighlight' d='M 496,208L 496,160' >
+	<title>Fk fk_object_entity
+object ref entity ( objectid -&gt; entityid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1u)' marker-end='url(#arrow1u)'    d='M 496,208L 496,160' ><title>Fk fk_object_entity
+object ref entity ( objectid -&gt; entityid )</title></path>
+<text x='499' y='206' transform='rotate(270 499,206)' class='relName'>objectid</text>
+<!-- == Fk 'object_fk_object_object_type' == -->
+<path id='object_fk_object_object_type'  onmouseover="hghl(['object_fk_object_object_type','nadya.object.objtypeid','nadya.object_type.objtypeid'])" onmouseout="uhghl(['object_fk_object_object_type','nadya.object.objtypeid','nadya.object_type.objtypeid'])" transform='translate(8,0)' class='unhighlight' d='M 560,256L 640,256' >
+	<title>Fk fk_object_object_type
+object ref object_type ( objtypeid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 560,256L 640,256' ><title>Fk fk_object_object_type
+object ref object_type ( objtypeid )</title></path>
+<text x='569' y='251' transform='rotate(0 569,251)' class='relName'>objtypeid</text>
+<!-- == Fk 'objparam_fk_objparam_object' == -->
+<path id='objparam_fk_objparam_object'  onmouseover="hghl(['objparam_fk_objparam_object','nadya.objparam.objectid','nadya.object.objectid'])" onmouseout="uhghl(['objparam_fk_objparam_object','nadya.objparam.objectid','nadya.object.objectid'])" transform='translate(8,0)' class='unhighlight' d='M 368,256L 448,256' >
+	<title>Fk fk_objparam_object
+objparam ref object ( objectid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 368,256L 448,256' ><title>Fk fk_objparam_object
+objparam ref object ( objectid )</title></path>
+<text x='377' y='251' transform='rotate(0 377,251)' class='relName'>objectid</text>
+<!-- == Fk 'objparam_fk_objparam_param' == -->
+<path id='objparam_fk_objparam_param'  onmouseover="hghl(['objparam_fk_objparam_param','nadya.objparam.paramid','nadya.param.paramid'])" onmouseout="uhghl(['objparam_fk_objparam_param','nadya.objparam.paramid','nadya.param.paramid'])" transform='translate(8,0)' class='unhighlight' d='M 320,336L 320,408Q 320,416 328,416L 336,416' >
+	<title>Fk fk_objparam_param
+objparam ref param ( paramid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 320,336L 320,408Q 320,416 328,416L 336,416' ><title>Fk fk_objparam_param
+objparam ref param ( paramid )</title></path>
+<text x='332' y='337' transform='rotate(90 332,337)' class='relName'>paramid</text>
+<!-- == Fk 'rel_constr_object_fk_rel_constr_object_object' == -->
+<path id='rel_constr_object_fk_rel_constr_object_object'  onmouseover="hghl(['rel_constr_object_fk_rel_constr_object_object','nadya.rel_constr_object.objectid','nadya.object.objectid'])" onmouseout="uhghl(['rel_constr_object_fk_rel_constr_object_object','nadya.rel_constr_object.objectid','nadya.object.objectid'])" transform='translate(8,0)' class='unhighlight' d='M 688,416L 552,416Q 544,416 544,408L 544,336' >
+	<title>Fk fk_rel_constr_object_object
+rel_constr_object ref object ( objectid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 688,416L 552,416Q 544,416 544,408L 544,336' ><title>Fk fk_rel_constr_object_object
+rel_constr_object ref object ( objectid )</title></path>
+<text x='649' y='411' transform='rotate(0 649,411)' class='relName'>objectid</text>
+<!-- == Fk 'rel_constr_object_fk_rel_constr_object_constraint' == -->
+<path id='rel_constr_object_fk_rel_constr_object_constraint'  onmouseover="hghl(['rel_constr_object_fk_rel_constr_object_constraint','nadya.rel_constr_object.constrid','nadya.constraint.constrainid'])" onmouseout="uhghl(['rel_constr_object_fk_rel_constr_object_constraint','nadya.rel_constr_object.constrid','nadya.constraint.constrainid'])" transform='translate(8,0)' class='unhighlight' d='M 816,400L 816,160' >
+	<title>Fk fk_rel_constr_object_constraint
+rel_constr_object ref constraint ( constrid -&gt; constrainid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 816,400L 816,160' ><title>Fk fk_rel_constr_object_constraint
+rel_constr_object ref constraint ( constrid -&gt; constrainid )</title></path>
+<text x='819' y='398' transform='rotate(270 819,398)' class='relName'>constrid</text>
+<!-- == Fk 'sketch_fk_sketch_model' == -->
+<path id='sketch_fk_sketch_model'  onmouseover="hghl(['sketch_fk_sketch_model','nadya.sketch.modelid','nadya.model.modelid'])" onmouseout="uhghl(['sketch_fk_sketch_model','nadya.sketch.modelid','nadya.model.modelid'])" transform='translate(8,0)' class='unhighlight' d='M 208,128L 168,128Q 160,128 160,136L 160,160' >
+	<title>Fk fk_sketch_model
+sketch ref model ( modelid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 208,128L 168,128Q 160,128 160,136L 160,160' ><title>Fk fk_sketch_model
+sketch ref model ( modelid )</title></path>
+<text x='171' y='123' transform='rotate(0 171,123)' class='relName'>modelid</text>
+<!-- == Fk 'sketch_fk_sketch_plane' == -->
+<path id='sketch_fk_sketch_plane'  onmouseover="hghl(['sketch_fk_sketch_plane','nadya.sketch.planeid','nadya.plane.planeid'])" onmouseout="uhghl(['sketch_fk_sketch_plane','nadya.sketch.planeid','nadya.plane.planeid'])" transform='translate(8,0)' class='unhighlight' d='M 240,160L 240,200Q 240,208 232,208L 200,208Q 192,208 192,216L 192,312Q 192,320 184,320L 144,320' >
+	<title>Fk fk_sketch_plane
+sketch ref plane ( planeid )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 240,160L 240,200Q 240,208 232,208L 200,208Q 192,208 192,216L 192,312Q 192,320 184,320L 144,320' ><title>Fk fk_sketch_plane
+sketch ref plane ( planeid )</title></path>
+<text x='252' y='161' transform='rotate(90 252,161)' class='relName'>planeid</text>
+<!-- == Table 'access_list' == -->
+<rect class='entity' style='stroke:none;' x='192' y='392' width='112' height='112' rx='8' ry='8' />
+<path d='M 192 420 L 192 400 Q 192 392 200 392 L 296 392 Q 304 392 304 400 L 304 420 L192 420 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='192' y='392' width='112' height='112' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.access_list'><text x='213' y='411' >access_list</text><title>Table nadya.access_list</title></a>
+  <use id='nn' x='194' y='429' xlink:href='#nn'/><use id='pk' x='194' y='428' xlink:href='#pk'><title>Pk pk_access_list_accessid ( accessid ) </title></use><a xlink:href='#nadya.access_list_accessid'><text id='nadya.access_list.accessid' x='211' y='439'>accessid</text><title>accessid
+* serial</title></a>
+<text x='301' y='436' text-anchor='end' class='colType'>#</text>  <use id='nn' x='194' y='445' xlink:href='#nn'/><a xlink:href='#nadya.access_list_userid'><text id='nadya.access_list.userid' x='211' y='455' onmouseover="hghl(['access_list_fk_access_list_user','nadya.user.userid'])" onmouseout="uhghl(['access_list_fk_access_list_user','nadya.user.userid'])">userid</text><title>userid
+* integer</title></a>
+<a xlink:href='#nadya.access_list.userid'><use id='fk' x='292' y='444' xlink:href='#fk'/><title>References user ( userid ) </title></a>
+  <use id='nn' x='194' y='461' xlink:href='#nn'/><a xlink:href='#nadya.access_list_modelid'><text id='nadya.access_list.modelid' x='211' y='471' onmouseover="hghl(['access_list_fk_access_list_model','nadya.model.modelid'])" onmouseout="uhghl(['access_list_fk_access_list_model','nadya.model.modelid'])">modelid</text><title>modelid
+* integer</title></a>
+<a xlink:href='#nadya.access_list.modelid'><use id='fk' x='292' y='460' xlink:href='#fk'/><title>References model ( modelid ) </title></a>
+  <use id='nn' x='194' y='477' xlink:href='#nn'/><a xlink:href='#nadya.access_list_access_type'><text id='nadya.access_list.access_type' x='211' y='487' onmouseover="hghl(['access_list_fk_access_list_access_type','nadya.access_type.accesstypeid'])" onmouseout="uhghl(['access_list_fk_access_list_access_type','nadya.access_type.accesstypeid'])">access_type</text><title>access_type
+* smallint</title></a>
+<a xlink:href='#nadya.access_list.access_type'><use id='fk' x='292' y='476' xlink:href='#fk'/><title>References access_type ( access_type -&gt; accesstypeid ) </title></a>
+
+<!-- == Table 'access_type' == -->
+<rect class='entity' style='stroke:none;' x='208' y='520' width='112' height='80' rx='8' ry='8' />
+<path d='M 208 548 L 208 528 Q 208 520 216 520 L 312 520 Q 320 520 320 528 L 320 548 L208 548 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='208' y='520' width='112' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.access_type'><text x='225' y='539' >access_type</text><title>Table nadya.access_type</title></a>
+  <use id='nn' x='210' y='557' xlink:href='#nn'/><use id='pk' x='210' y='556' xlink:href='#pk'><title>Pk pk_access_type_accesstypeid ( accesstypeid ) </title></use><a xlink:href='#nadya.access_type_accesstypeid'><text id='nadya.access_type.accesstypeid' x='227' y='567' onmouseover="hghl(['access_list_fk_access_list_access_type','nadya.access_list.access_type'])" onmouseout="uhghl(['access_list_fk_access_list_access_type','nadya.access_list.access_type'])">accesstypeid</text><title>accesstypeid
+* smallint</title></a>
+<a xlink:href='#nadya.access_type.accesstypeid'><use id='ref' x='308' y='556' xlink:href='#ref'/><title>Referred by access_list ( access_type -&gt; accesstypeid ) </title></a>
+  <use id='nn' x='210' y='573' xlink:href='#nn'/><a xlink:href='#nadya.access_type_name'><text id='nadya.access_type.name' x='227' y='583'>name</text><title>name
+* varchar(50)</title></a>
+<text x='317' y='580' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'constr_param' == -->
+<rect class='entity' style='stroke:none;' x='880' y='312' width='112' height='80' rx='8' ry='8' />
+<path d='M 880 340 L 880 320 Q 880 312 888 312 L 984 312 Q 992 312 992 320 L 992 340 L880 340 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='880' y='312' width='112' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.constr_param'><text x='892' y='331' >constr_param</text><title>Table nadya.constr_param</title></a>
+  <use id='nn' x='882' y='349' xlink:href='#nn'/><use id='pk' x='882' y='348' xlink:href='#pk'><title>Pk pk_constr_param ( paramid, constrainid ) </title></use><a xlink:href='#nadya.constr_param_paramid'><text id='nadya.constr_param.paramid' x='899' y='359' onmouseover="hghl(['constr_param_fk_constr_param_param','nadya.param.paramid'])" onmouseout="uhghl(['constr_param_fk_constr_param_param','nadya.param.paramid'])">paramid</text><title>paramid
+* integer</title></a>
+<a xlink:href='#nadya.constr_param.paramid'><use id='fk' x='980' y='348' xlink:href='#fk'/><title>References param ( paramid ) </title></a>
+  <use id='nn' x='882' y='365' xlink:href='#nn'/><use id='pk' x='882' y='364' xlink:href='#pk'><title>Pk pk_constr_param ( paramid, constrainid ) </title></use><a xlink:href='#nadya.constr_param_constrainid'><text id='nadya.constr_param.constrainid' x='899' y='375' onmouseover="hghl(['constr_param_fk_constr_param_constraint','nadya.constraint.constrainid'])" onmouseout="uhghl(['constr_param_fk_constr_param_constraint','nadya.constraint.constrainid'])">constrainid</text><title>constrainid
+* integer</title></a>
+<a xlink:href='#nadya.constr_param.constrainid'><use id='fk' x='980' y='364' xlink:href='#fk'/><title>References constraint ( constrainid ) </title></a>
+
+<!-- == Table 'constr_type' == -->
+<rect class='entity' style='stroke:none;' x='944' y='72' width='112' height='80' rx='8' ry='8' />
+<path d='M 944 100 L 944 80 Q 944 72 952 72 L 1048 72 Q 1056 72 1056 80 L 1056 100 L944 100 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='944' y='72' width='112' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.constr_type'><text x='962' y='91' >constr_type</text><title>Table nadya.constr_type</title></a>
+  <use id='nn' x='946' y='109' xlink:href='#nn'/><use id='pk' x='946' y='108' xlink:href='#pk'><title>Pk pk_constr_type_consttypeid ( consttypeid ) </title></use><a xlink:href='#nadya.constr_type_consttypeid'><text id='nadya.constr_type.consttypeid' x='963' y='119' onmouseover="hghl(['constraint_fk_constraint_constr_type','nadya.constraint.constrainid'])" onmouseout="uhghl(['constraint_fk_constraint_constr_type','nadya.constraint.constrainid'])">consttypeid</text><title>consttypeid
+* integer</title></a>
+<a xlink:href='#nadya.constr_type.consttypeid'><use id='ref' x='1044' y='108' xlink:href='#ref'/><title>Referred by constraint ( constrainid -&gt; consttypeid ) </title></a>
+  <use id='nn' x='946' y='125' xlink:href='#nn'/><a xlink:href='#nadya.constr_type_name'><text id='nadya.constr_type.name' x='963' y='135'>name</text><title>name
+* varchar(50)</title></a>
+<text x='1053' y='132' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'constraint' == -->
+<rect class='entity' style='stroke:none;' x='768' y='72' width='112' height='80' rx='8' ry='8' />
+<path d='M 768 100 L 768 80 Q 768 72 776 72 L 872 72 Q 880 72 880 80 L 880 100 L768 100 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='768' y='72' width='112' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.constraint'><text x='791' y='91' >constraint</text><title>Table nadya.constraint</title></a>
+  <use id='nn' x='770' y='109' xlink:href='#nn'/><use id='pk' x='770' y='108' xlink:href='#pk'><title>Pk pk_constra_constrainid ( constrainid ) </title></use><a xlink:href='#nadya.constraint_constrainid'><text id='nadya.constraint.constrainid' x='787' y='119' onmouseover="hghl(['constraint_fk_constraint_constr_type','nadya.constr_type.consttypeid','constraint_fk_constraint_entity','nadya.entity.entityid','constr_param_fk_constr_param_constraint','nadya.constr_param.constrainid','rel_constr_object_fk_rel_constr_object_constraint','nadya.rel_constr_object.constrid'])" onmouseout="uhghl(['constraint_fk_constraint_constr_type','nadya.constr_type.consttypeid','constraint_fk_constraint_entity','nadya.entity.entityid','constr_param_fk_constr_param_constraint','nadya.constr_param.constrainid','rel_constr_object_fk_rel_constr_object_constraint','nadya.rel_constr_object.constrid'])">constrainid</text><title>constrainid
+* integer</title></a>
+<a xlink:href='#nadya.constraint.constrainid'><use id='fk' x='868' y='108' xlink:href='#fk'/><title>References constr_type ( constrainid -&gt; consttypeid ) 
+References entity ( constrainid -&gt; entityid ) 
+Referred by constr_param ( constrainid ) 
+Referred by rel_constr_object ( constrid -&gt; constrainid ) </title></a>
+  <use id='nn' x='770' y='125' xlink:href='#nn'/><a xlink:href='#nadya.constraint_consttypeid'><text id='nadya.constraint.consttypeid' x='787' y='135'>consttypeid</text><title>consttypeid
+* integer</title></a>
+<text x='877' y='132' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'entity' == -->
+<rect class='entity' style='stroke:none;' x='464' y='72' width='96' height='80' rx='8' ry='8' />
+<path d='M 464 100 L 464 80 Q 464 72 472 72 L 552 72 Q 560 72 560 80 L 560 100 L464 100 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='464' y='72' width='96' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.entity'><text x='491' y='91' >entity</text><title>Table nadya.entity</title></a>
+  <use id='nn' x='466' y='109' xlink:href='#nn'/><use id='pk' x='466' y='108' xlink:href='#pk'><title>Pk pk_entity_entityid ( entityid ) </title></use><a xlink:href='#nadya.entity_entityid'><text id='nadya.entity.entityid' x='483' y='119' onmouseover="hghl(['constraint_fk_constraint_entity','nadya.constraint.constrainid','object_fk_object_entity','nadya.object.objectid'])" onmouseout="uhghl(['constraint_fk_constraint_entity','nadya.constraint.constrainid','object_fk_object_entity','nadya.object.objectid'])">entityid</text><title>entityid
+* integer</title></a>
+<a xlink:href='#nadya.entity.entityid'><use id='ref' x='548' y='108' xlink:href='#ref'/><title>Referred by constraint ( constrainid -&gt; entityid ) 
+Referred by object ( objectid -&gt; entityid ) </title></a>
+  <use id='nn' x='466' y='125' xlink:href='#nn'/><a xlink:href='#nadya.entity_modelid'><text id='nadya.entity.modelid' x='483' y='135' onmouseover="hghl(['entity_fk_entity_model','nadya.model.modelid'])" onmouseout="uhghl(['entity_fk_entity_model','nadya.model.modelid'])">modelid</text><title>modelid
+* integer</title></a>
+<a xlink:href='#nadya.entity.modelid'><use id='fk' x='548' y='124' xlink:href='#fk'/><title>References model ( modelid ) </title></a>
+
+<!-- == Table 'model' == -->
+<rect class='entity' style='stroke:none;' x='48' y='168' width='128' height='112' rx='8' ry='8' />
+<path d='M 48 196 L 48 176 Q 48 168 56 168 L 168 168 Q 176 168 176 176 L 176 196 L48 196 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='48' y='168' width='128' height='112' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.model'><text x='90' y='187' >model</text><title>Table nadya.model</title></a>
+  <use id='nn' x='50' y='205' xlink:href='#nn'/><use id='pk' x='50' y='204' xlink:href='#pk'><title>Pk pk_model_modelid ( modelid ) </title></use><a xlink:href='#nadya.model_modelid'><text id='nadya.model.modelid' x='67' y='215' onmouseover="hghl(['access_list_fk_access_list_model','nadya.access_list.modelid','entity_fk_entity_model','nadya.entity.modelid','sketch_fk_sketch_model','nadya.sketch.modelid'])" onmouseout="uhghl(['access_list_fk_access_list_model','nadya.access_list.modelid','entity_fk_entity_model','nadya.entity.modelid','sketch_fk_sketch_model','nadya.sketch.modelid'])">modelid</text><title>modelid
+* integer</title></a>
+<a xlink:href='#nadya.model.modelid'><use id='ref' x='164' y='204' xlink:href='#ref'/><title>Referred by access_list ( modelid ) 
+Referred by entity ( modelid ) 
+Referred by sketch ( modelid ) </title></a>
+  <a xlink:href='#nadya.model_userid_own'><text id='nadya.model.userid_own' x='67' y='231' onmouseover="hghl(['model_fk_model_user','nadya.user.userid'])" onmouseout="uhghl(['model_fk_model_user','nadya.user.userid'])">userid_own</text><title>userid_own
+integer</title></a>
+<a xlink:href='#nadya.model.userid_own'><use id='fk' x='164' y='220' xlink:href='#fk'/><title>References user ( userid_own -&gt; userid ) </title></a>
+  <a xlink:href='#nadya.model_userid_modify'><text id='nadya.model.userid_modify' x='67' y='247' onmouseover="hghl(['model_fk_model_user_0','nadya.user.userid'])" onmouseout="uhghl(['model_fk_model_user_0','nadya.user.userid'])">userid_modify</text><title>userid_modify
+integer</title></a>
+<a xlink:href='#nadya.model.userid_modify'><use id='fk' x='164' y='236' xlink:href='#fk'/><title>References user ( userid_modify -&gt; userid ) </title></a>
+  <a xlink:href='#nadya.model_date_modify'><text id='nadya.model.date_modify' x='67' y='263'>date_modify</text><title>date_modify
+timestamp</title></a>
+<text x='173' y='260' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'object' == -->
+<rect class='entity' style='stroke:none;' x='464' y='216' width='96' height='112' rx='8' ry='8' />
+<path d='M 464 244 L 464 224 Q 464 216 472 216 L 552 216 Q 560 216 560 224 L 560 244 L464 244 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='464' y='216' width='96' height='112' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.object'><text x='489' y='235' >object</text><title>Table nadya.object</title></a>
+  <use id='nn' x='466' y='253' xlink:href='#nn'/><use id='pk' x='466' y='252' xlink:href='#pk'><title>Pk pk_ob_objectid ( objectid ) </title></use><a xlink:href='#nadya.object_objectid'><text id='nadya.object.objectid' x='483' y='263' onmouseover="hghl(['object_fk_object_entity','nadya.entity.entityid','object_fk_object_object','nadya.object.parentid','objparam_fk_objparam_object','nadya.objparam.objectid','rel_constr_object_fk_rel_constr_object_object','nadya.rel_constr_object.objectid'])" onmouseout="uhghl(['object_fk_object_entity','nadya.entity.entityid','object_fk_object_object','nadya.object.parentid','objparam_fk_objparam_object','nadya.objparam.objectid','rel_constr_object_fk_rel_constr_object_object','nadya.rel_constr_object.objectid'])">objectid</text><title>objectid
+* integer</title></a>
+<a xlink:href='#nadya.object.objectid'><use id='fk' x='548' y='252' xlink:href='#fk'/><title>References entity ( objectid -&gt; entityid ) 
+Referred by object ( parentid -&gt; objectid ) 
+Referred by objparam ( objectid ) 
+Referred by rel_constr_object ( objectid ) </title></a>
+  <use id='nn' x='466' y='269' xlink:href='#nn'/><a xlink:href='#nadya.object_objtypeid'><text id='nadya.object.objtypeid' x='483' y='279' onmouseover="hghl(['object_fk_object_object_type','nadya.object_type.objtypeid'])" onmouseout="uhghl(['object_fk_object_object_type','nadya.object_type.objtypeid'])">objtypeid</text><title>objtypeid
+* integer</title></a>
+<a xlink:href='#nadya.object.objtypeid'><use id='fk' x='548' y='268' xlink:href='#fk'/><title>References object_type ( objtypeid ) </title></a>
+  <use id='nn' x='466' y='285' xlink:href='#nn'/><a xlink:href='#nadya.object_name'><text id='nadya.object.name' x='483' y='295'>name</text><title>name
+* varchar(50)</title></a>
+<text x='557' y='292' text-anchor='end' class='colType'>t</text>  <a xlink:href='#nadya.object_parentid'><text id='nadya.object.parentid' x='483' y='311' onmouseover="hghl(['object_fk_object_object','nadya.object.objectid'])" onmouseout="uhghl(['object_fk_object_object','nadya.object.objectid'])">parentid</text><title>parentid
+integer</title></a>
+<a xlink:href='#nadya.object.parentid'><use id='fk' x='548' y='300' xlink:href='#fk'/><title>References object ( parentid -&gt; objectid ) </title></a>
+
+<!-- == Table 'object_type' == -->
+<rect class='entity' style='stroke:none;' x='656' y='200' width='144' height='96' rx='8' ry='8' />
+<path d='M 656 228 L 656 208 Q 656 200 664 200 L 792 200 Q 800 200 800 208 L 800 228 L656 228 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='656' y='200' width='144' height='96' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.object_type'><text x='689' y='219' >object_type</text><title>Table nadya.object_type</title></a>
+  <use id='nn' x='658' y='237' xlink:href='#nn'/><use id='pk' x='658' y='236' xlink:href='#pk'><title>Pk pk_object_type_objtypeid ( objtypeid ) </title></use><a xlink:href='#nadya.object_type_objtypeid'><text id='nadya.object_type.objtypeid' x='675' y='247' onmouseover="hghl(['object_fk_object_object_type','nadya.object.objtypeid'])" onmouseout="uhghl(['object_fk_object_object_type','nadya.object.objtypeid'])">objtypeid</text><title>objtypeid
+* integer</title></a>
+<a xlink:href='#nadya.object_type.objtypeid'><use id='ref' x='788' y='236' xlink:href='#ref'/><title>Referred by object ( objtypeid ) </title></a>
+  <use id='nn' x='658' y='253' xlink:href='#nn'/><a xlink:href='#nadya.object_type_name'><text id='nadya.object_type.name' x='675' y='263'>name</text><title>name
+* varchar(50)</title></a>
+<text x='797' y='260' text-anchor='end' class='colType'>t</text>  <use id='nn' x='658' y='269' xlink:href='#nn'/><a xlink:href='#nadya.object_type_degree_freedom'><text id='nadya.object_type.degree_freedom' x='675' y='279'>degree_freedom</text><title>degree_freedom
+* integer</title></a>
+<text x='797' y='276' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'objparam' == -->
+<rect class='entity' style='stroke:none;' x='256' y='232' width='112' height='96' rx='8' ry='8' />
+<path d='M 256 260 L 256 240 Q 256 232 264 232 L 360 232 Q 368 232 368 240 L 368 260 L256 260 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='256' y='232' width='112' height='96' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.objparam'><text x='280' y='251' >objparam</text><title>Table nadya.objparam</title></a>
+  <use id='nn' x='258' y='269' xlink:href='#nn'/><use id='pk' x='258' y='268' xlink:href='#pk'><title>Pk pk_objparam_objparamid ( objparamid ) </title></use><a xlink:href='#nadya.objparam_objparamid'><text id='nadya.objparam.objparamid' x='275' y='279'>objparamid</text><title>objparamid
+* serial</title></a>
+<text x='365' y='276' text-anchor='end' class='colType'>#</text>  <use id='nn' x='258' y='285' xlink:href='#nn'/><a xlink:href='#nadya.objparam_objectid'><text id='nadya.objparam.objectid' x='275' y='295' onmouseover="hghl(['objparam_fk_objparam_object','nadya.object.objectid'])" onmouseout="uhghl(['objparam_fk_objparam_object','nadya.object.objectid'])">objectid</text><title>objectid
+* integer</title></a>
+<a xlink:href='#nadya.objparam.objectid'><use id='fk' x='356' y='284' xlink:href='#fk'/><title>References object ( objectid ) </title></a>
+  <use id='nn' x='258' y='301' xlink:href='#nn'/><a xlink:href='#nadya.objparam_paramid'><text id='nadya.objparam.paramid' x='275' y='311' onmouseover="hghl(['objparam_fk_objparam_param','nadya.param.paramid'])" onmouseout="uhghl(['objparam_fk_objparam_param','nadya.param.paramid'])">paramid</text><title>paramid
+* integer</title></a>
+<a xlink:href='#nadya.objparam.paramid'><use id='fk' x='356' y='300' xlink:href='#fk'/><title>References param ( paramid ) </title></a>
+
+<!-- == Table 'param' == -->
+<rect class='entity' style='stroke:none;' x='352' y='408' width='96' height='80' rx='8' ry='8' />
+<path d='M 352 436 L 352 416 Q 352 408 360 408 L 440 408 Q 448 408 448 416 L 448 436 L352 436 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='352' y='408' width='96' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.param'><text x='378' y='427' >param</text><title>Table nadya.param</title></a>
+  <use id='nn' x='354' y='445' xlink:href='#nn'/><use id='pk' x='354' y='444' xlink:href='#pk'><title>Pk pk_param_paramid ( paramid ) </title></use><a xlink:href='#nadya.param_paramid'><text id='nadya.param.paramid' x='371' y='455' onmouseover="hghl(['constr_param_fk_constr_param_param','nadya.constr_param.paramid','objparam_fk_objparam_param','nadya.objparam.paramid'])" onmouseout="uhghl(['constr_param_fk_constr_param_param','nadya.constr_param.paramid','objparam_fk_objparam_param','nadya.objparam.paramid'])">paramid</text><title>paramid
+* integer</title></a>
+<a xlink:href='#nadya.param.paramid'><use id='ref' x='436' y='444' xlink:href='#ref'/><title>Referred by constr_param ( paramid ) 
+Referred by objparam ( paramid ) </title></a>
+  <use id='nn' x='354' y='461' xlink:href='#nn'/><a xlink:href='#nadya.param_value'><text id='nadya.param.value' x='371' y='471'>value</text><title>value
+* double precision</title></a>
+<text x='445' y='468' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'plane' == -->
+<rect class='entity' style='stroke:none;' x='64' y='296' width='80' height='160' rx='8' ry='8' />
+<path d='M 64 324 L 64 304 Q 64 296 72 296 L 136 296 Q 144 296 144 304 L 144 324 L64 324 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='64' y='296' width='80' height='160' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.plane'><text x='84' y='315' >plane</text><title>Table nadya.plane</title></a>
+  <use id='nn' x='66' y='333' xlink:href='#nn'/><use id='pk' x='66' y='332' xlink:href='#pk'><title>Pk pk_plane_planeid ( planeid ) </title></use><a xlink:href='#nadya.plane_planeid'><text id='nadya.plane.planeid' x='83' y='343' onmouseover="hghl(['sketch_fk_sketch_plane','nadya.sketch.planeid'])" onmouseout="uhghl(['sketch_fk_sketch_plane','nadya.sketch.planeid'])">planeid</text><title>planeid
+* integer</title></a>
+<a xlink:href='#nadya.plane.planeid'><use id='ref' x='132' y='332' xlink:href='#ref'/><title>Referred by sketch ( planeid ) </title></a>
+  <use id='nn' x='66' y='349' xlink:href='#nn'/><a xlink:href='#nadya.plane_x0'><text id='nadya.plane.x0' x='83' y='359'>x0</text><title>x0
+* double precision</title></a>
+<text x='141' y='356' text-anchor='end' class='colType'>#</text>  <use id='nn' x='66' y='365' xlink:href='#nn'/><a xlink:href='#nadya.plane_y0'><text id='nadya.plane.y0' x='83' y='375'>y0</text><title>y0
+* double precision</title></a>
+<text x='141' y='372' text-anchor='end' class='colType'>#</text>  <use id='nn' x='66' y='381' xlink:href='#nn'/><a xlink:href='#nadya.plane_z0'><text id='nadya.plane.z0' x='83' y='391'>z0</text><title>z0
+* double precision</title></a>
+<text x='141' y='388' text-anchor='end' class='colType'>#</text>  <use id='nn' x='66' y='397' xlink:href='#nn'/><a xlink:href='#nadya.plane_ex'><text id='nadya.plane.ex' x='83' y='407'>ex</text><title>ex
+* double precision</title></a>
+<text x='141' y='404' text-anchor='end' class='colType'>#</text>  <use id='nn' x='66' y='413' xlink:href='#nn'/><a xlink:href='#nadya.plane_ey'><text id='nadya.plane.ey' x='83' y='423'>ey</text><title>ey
+* double precision</title></a>
+<text x='141' y='420' text-anchor='end' class='colType'>#</text>  <use id='nn' x='66' y='429' xlink:href='#nn'/><a xlink:href='#nadya.plane_ez'><text id='nadya.plane.ez' x='83' y='439'>ez</text><title>ez
+* double precision</title></a>
+<text x='141' y='436' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'rel_constr_object' == -->
+<rect class='entity' style='stroke:none;' x='704' y='408' width='128' height='80' rx='8' ry='8' />
+<path d='M 704 436 L 704 416 Q 704 408 712 408 L 824 408 Q 832 408 832 416 L 832 436 L704 436 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='704' y='408' width='128' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.rel_constr_object'><text x='712' y='427' >rel_constr_object</text><title>Table nadya.rel_constr_object</title></a>
+  <use id='nn' x='706' y='445' xlink:href='#nn'/><use id='pk' x='706' y='444' xlink:href='#pk'><title>Pk pk_rel_constr_object ( objectid, constrid ) </title></use><a xlink:href='#nadya.rel_constr_object_objectid'><text id='nadya.rel_constr_object.objectid' x='723' y='455' onmouseover="hghl(['rel_constr_object_fk_rel_constr_object_object','nadya.object.objectid'])" onmouseout="uhghl(['rel_constr_object_fk_rel_constr_object_object','nadya.object.objectid'])">objectid</text><title>objectid
+* integer</title></a>
+<a xlink:href='#nadya.rel_constr_object.objectid'><use id='fk' x='820' y='444' xlink:href='#fk'/><title>References object ( objectid ) </title></a>
+  <use id='nn' x='706' y='461' xlink:href='#nn'/><use id='pk' x='706' y='460' xlink:href='#pk'><title>Pk pk_rel_constr_object ( objectid, constrid ) </title></use><a xlink:href='#nadya.rel_constr_object_constrid'><text id='nadya.rel_constr_object.constrid' x='723' y='471' onmouseover="hghl(['rel_constr_object_fk_rel_constr_object_constraint','nadya.constraint.constrainid'])" onmouseout="uhghl(['rel_constr_object_fk_rel_constr_object_constraint','nadya.constraint.constrainid'])">constrid</text><title>constrid
+* integer</title></a>
+<a xlink:href='#nadya.rel_constr_object.constrid'><use id='fk' x='820' y='460' xlink:href='#fk'/><title>References constraint ( constrid -&gt; constrainid ) </title></a>
+
+<!-- == Table 'sketch' == -->
+<rect class='entity' style='stroke:none;' x='224' y='56' width='96' height='96' rx='8' ry='8' />
+<path d='M 224 84 L 224 64 Q 224 56 232 56 L 312 56 Q 320 56 320 64 L 320 84 L224 84 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='224' y='56' width='96' height='96' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.sketch'><text x='249' y='75' >sketch</text><title>Table nadya.sketch</title></a>
+  <use id='nn' x='226' y='93' xlink:href='#nn'/><use id='pk' x='226' y='92' xlink:href='#pk'><title>Pk pk_sketch_sketchid ( sketchid ) </title></use><a xlink:href='#nadya.sketch_sketchid'><text id='nadya.sketch.sketchid' x='243' y='103'>sketchid</text><title>sketchid
+* integer</title></a>
+<text x='317' y='100' text-anchor='end' class='colType'>#</text>  <use id='nn' x='226' y='109' xlink:href='#nn'/><a xlink:href='#nadya.sketch_modelid'><text id='nadya.sketch.modelid' x='243' y='119' onmouseover="hghl(['sketch_fk_sketch_model','nadya.model.modelid'])" onmouseout="uhghl(['sketch_fk_sketch_model','nadya.model.modelid'])">modelid</text><title>modelid
+* integer</title></a>
+<a xlink:href='#nadya.sketch.modelid'><use id='fk' x='308' y='108' xlink:href='#fk'/><title>References model ( modelid ) </title></a>
+  <use id='nn' x='226' y='125' xlink:href='#nn'/><a xlink:href='#nadya.sketch_planeid'><text id='nadya.sketch.planeid' x='243' y='135' onmouseover="hghl(['sketch_fk_sketch_plane','nadya.plane.planeid'])" onmouseout="uhghl(['sketch_fk_sketch_plane','nadya.plane.planeid'])">planeid</text><title>planeid
+* integer</title></a>
+<a xlink:href='#nadya.sketch.planeid'><use id='fk' x='308' y='124' xlink:href='#fk'/><title>References plane ( planeid ) </title></a>
+
+<!-- == Table 'user' == -->
+<rect class='entity' style='stroke:none;' x='48' y='40' width='80' height='80' rx='8' ry='8' />
+<path d='M 48 68 L 48 48 Q 48 40 56 40 L 120 40 Q 128 40 128 48 L 128 68 L48 68 ' style='fill:url(#tbg_C1D8EE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='48' y='40' width='80' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD9E8'/>
+<a xlink:href='#nadya.user'><text x='72' y='59' >user</text><title>Table nadya.user
+users</title></a>
+  <use id='nn' x='50' y='77' xlink:href='#nn'/><use id='pk' x='50' y='76' xlink:href='#pk'><title>Pk pk_tbl_userid ( userid ) </title></use><a xlink:href='#nadya.user_userid'><text id='nadya.user.userid' x='67' y='87' onmouseover="hghl(['access_list_fk_access_list_user','nadya.access_list.userid','model_fk_model_user','nadya.model.userid_own','model_fk_model_user_0','nadya.model.userid_modify'])" onmouseout="uhghl(['access_list_fk_access_list_user','nadya.access_list.userid','model_fk_model_user','nadya.model.userid_own','model_fk_model_user_0','nadya.model.userid_modify'])">userid</text><title>userid
+* integer</title></a>
+<a xlink:href='#nadya.user.userid'><use id='ref' x='116' y='76' xlink:href='#ref'/><title>Referred by access_list ( userid ) 
+Referred by model ( userid_own -&gt; userid ) 
+Referred by model ( userid_modify -&gt; userid ) </title></a>
+  <use id='nn' x='50' y='93' xlink:href='#nn'/><a xlink:href='#nadya.user_name'><text id='nadya.user.name' x='67' y='103'>name</text><title>name
+* varchar(100)</title></a>
+<text x='125' y='100' text-anchor='end' class='colType'>t</text>
+</g></svg>

@@ -1,0 +1,15 @@
+drop table "constr_param";
+drop table "rel_constr_object";
+drop table "constraint";
+drop table "constr_type";
+drop table "objparam";
+drop table "param";
+drop table "object";
+drop table "object_type";
+drop table "entity";
+drop table "sketch";
+drop table "plane";
+drop table "access_list";
+drop table "access_type";
+drop table "model";
+drop table "user";
