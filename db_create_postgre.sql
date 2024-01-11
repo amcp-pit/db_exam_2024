@@ -1,6 +1,3 @@
--- CREATE database vector_modeling;
-
-
 -- Table user
 CREATE TABLE IF NOT EXISTS public.user (
     user_id INT PRIMARY KEY,
@@ -54,10 +51,8 @@ CREATE TABLE IF NOT EXISTS public.plane (
 -- Table sketch
 CREATE TABLE IF NOT EXISTS public.sketch (
     sketch_id INT PRIMARY KEY,
-    model_id INT,
     plane_id INT,
 
-    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
