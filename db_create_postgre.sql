@@ -102,8 +102,7 @@ CREATE TABLE IF NOT EXISTS public.object  (
 -- Table object_param
 CREATE TABLE IF NOT EXISTS public.object_param  (
     object_id INT NOT NULL,
-    param_id INT NOT NULL,   
-    num INT NULL,
+    param_id INT NOT NULL,
 
     PRIMARY KEY (object_id, param_id),
     FOREIGN KEY (param_id) REFERENCES "param"(param_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
