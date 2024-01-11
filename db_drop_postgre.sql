@@ -19,7 +19,6 @@ ALTER TABLE public.object_param DROP CONSTRAINT IF EXISTS object_param_object_id
 ALTER TABLE public.object_param DROP CONSTRAINT IF EXISTS object_param_param_id_fkey;
 ALTER TABLE public.param DROP CONSTRAINT IF EXISTS param_pkey;
 ALTER TABLE public.plane DROP CONSTRAINT IF EXISTS plane_model_id_fkey;
-ALTER TABLE public.sketch DROP CONSTRAINT IF EXISTS sketch_model_id_fkey;
 ALTER TABLE public.sketch DROP CONSTRAINT IF EXISTS sketch_plane_id_fkey;
 ALTER TABLE public.user DROP CONSTRAINT IF EXISTS user_pkey;
 
