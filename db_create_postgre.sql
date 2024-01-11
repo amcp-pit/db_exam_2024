@@ -66,6 +66,14 @@ CREATE TABLE  public.object  (
   FOREIGN KEY ( objtype ) REFERENCES  objtype  ( idobjtype ) ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY ( idobject ) REFERENCES  entity  ( identity )  ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ( idparent ) REFERENCES  object  ( idobject )  ON DELETE CASCADE ON UPDATE CASCADE);
+ 
+ create table public.point (
+ 	idpoint int not null,
+ 	x DOUBLE PRECISION NOT null,
+ 	y DOUBLE PRECISION NOT null,
+ 	PRIMARY KEY ( idpoint ),
+ 	FOREIGN KEY ( idpoint ) REFERENCES  object  ( idobject )  ON DELETE CASCADE ON UPDATE CASCADE
+ );
 
 
 CREATE TABLE  public.objparam  (
