@@ -3,7 +3,6 @@ drop table public.constrinfo;
 drop table public."constraint";
 drop table public.constrtype;
 drop table public.objparam;
-drop table public.point;
 drop table public.object;
 drop table public.objtype;
 drop table public.param;
