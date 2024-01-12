@@ -30,21 +30,6 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 );
 
 
--- Table plane
-CREATE TABLE IF NOT EXISTS public.plane (
-    plane_id INT NOT NULL PRIMARY KEY,
-    model_id INT NOT NULL,
-    point_id INT,
-    vector1_id INT NOT NULL,
-    vector2_id INT NOT NULL,
-
-    FOREIGN KEY (point_id) REFERENCES entity(entity_id) MATCH FULL ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (vector1_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (vector2_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
 -- Table sketch
 CREATE TABLE IF NOT EXISTS public.sketch (
     sketch_id INT NOT NULL PRIMARY KEY,
@@ -138,4 +123,18 @@ CREATE TABLE IF NOT EXISTS public.constraint_param  (
     PRIMARY KEY (constraint_id, param_id),
     FOREIGN KEY (constraint_id) REFERENCES "constraint"(constraint_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (param_id) REFERENCES "param"(param_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Table plane
+CREATE TABLE IF NOT EXISTS public.plane (
+    plane_id INT NOT NULL PRIMARY KEY,
+    model_id INT NOT NULL,
+    point_id INT,
+    vector1_id INT NOT NULL,
+    vector2_id INT NOT NULL,
+
+    FOREIGN KEY (point_id) REFERENCES entity(entity_id) MATCH FULL ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vector1_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vector2_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
