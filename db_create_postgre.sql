@@ -43,11 +43,11 @@ CREATE TABLE IF NOT EXISTS public.entity (
 CREATE TABLE IF NOT EXISTS public.plane (
     plane_id INT NOT NULL PRIMARY KEY,
     model_id INT NOT NULL,
-    point_id INT NOT NULL,
+    point_id INT NULL,
     vector1_id INT NOT NULL,
     vector2_id INT NOT NULL,
 
-    FOREIGN KEY (point_id) REFERENCES entity(entity_id) MATCH FULL ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (point_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (vector1_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (vector2_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
