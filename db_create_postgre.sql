@@ -34,16 +34,13 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 CREATE TABLE IF NOT EXISTS public.plane (
     plane_id INT NOT NULL PRIMARY KEY,
     model_id INT NOT NULL,
-    point_x DOUBLE PRECISION NOT NULL,
-    point_y DOUBLE PRECISION NOT NULL,
-    point_z DOUBLE PRECISION NOT NULL,
-    vector1_x DOUBLE PRECISION NOT NULL,
-    vector1_y DOUBLE PRECISION NOT NULL,
-    vector1_z DOUBLE PRECISION NOT NULL,
-    vector2_x DOUBLE PRECISION NOT NULL,
-    vector2_y DOUBLE PRECISION NOT NULL,
-    vector2_z DOUBLE PRECISION NOT NULL,
+    point_id INT,
+    vector1_id INT NOT NULL,
+    vector2_id INT NOT NULL,
 
+    FOREIGN KEY (point_id) REFERENCES entity(entity_id) MATCH FULL ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vector1_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vector2_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -51,9 +48,9 @@ CREATE TABLE IF NOT EXISTS public.plane (
 -- Table sketch
 CREATE TABLE IF NOT EXISTS public.sketch (
     sketch_id INT NOT NULL PRIMARY KEY,
-    plane_id INT NOT NULL,
+    model_id INT NOT NULL,
 
-    FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -86,7 +83,6 @@ CREATE TABLE IF NOT EXISTS public.object  (
     object_id INT NOT NULL PRIMARY KEY,
     object_type_id INT NOT NULL,
     parent_id INT,
-    name VARCHAR(128),
 
     FOREIGN KEY (object_type_id) REFERENCES object_type(object_type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
