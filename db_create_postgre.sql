@@ -45,10 +45,17 @@ create table public.sketch (
 
 CREATE TABLE public.entity (
    identity  int NOT NULL,
-   sketch_  INT NOT NULL,
+   model_  INT NOT NULL,
   PRIMARY KEY ( identity ),
-  FOREIGN KEY ( sketch_ ) REFERENCES  sketch ( idsketch ) ON DELETE CASCADE ON UPDATE CASCADE);
+  FOREIGN KEY ( model_ ) REFERENCES  model ( idmodel ) ON DELETE CASCADE ON UPDATE CASCADE);
 
+
+CREATE TABLE public.entityinfo (
+	entity_ int not null,
+	sketch_ int not null,
+	PRIMARY KEY ( entity_, sketch_ ),
+	FOREIGN KEY ( entity_ ) REFERENCES  entity  ( identity )  ON DELETE CASCADE ON UPDATE CASCADE,
+  	FOREIGN KEY ( sketch_ ) REFERENCES  sketch ( idsketch)  ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE  public.param  (
    idparam  int NOT NULL,

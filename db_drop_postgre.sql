@@ -6,6 +6,7 @@ drop table public.objparam;
 drop table public.object;
 drop table public.objtype;
 drop table public.param;
+drop table public.entityinfo;
 drop table public.entity;
 drop table public.sketch;
 drop table public.plane;
