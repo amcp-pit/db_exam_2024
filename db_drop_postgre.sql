@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS public.constraint_info CASCADE;
 DROP TABLE IF EXISTS public.constraint CASCADE;
 DROP TABLE IF EXISTS public.constraint_type CASCADE;
 DROP TABLE IF EXISTS public.object_param CASCADE;
-DROP TABLE IF EXISTS public.object_order CASCADE;
 DROP TABLE IF EXISTS public.object CASCADE;
 DROP TABLE IF EXISTS public.object_type CASCADE;
 DROP TABLE IF EXISTS public.param CASCADE;

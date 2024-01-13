@@ -86,20 +86,9 @@ CREATE TABLE IF NOT EXISTS public.object  (
     object_id INT NOT NULL PRIMARY KEY,
     object_type_id INT NOT NULL,
     parent_id INT,
-
-    FOREIGN KEY (object_type_id) REFERENCES object_type(object_type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (parent_id) REFERENCES "object"(object_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
--- Table object_order
-CREATE TABLE IF NOT EXISTS public.object_order  (
-    object_id INT NOT NULL,
-    parent_id INT NOT NULL,
     num INT,
 
-    PRIMARY KEY (object_id, parent_id),
+    FOREIGN KEY (object_type_id) REFERENCES object_type(object_type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (parent_id) REFERENCES "object"(object_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
