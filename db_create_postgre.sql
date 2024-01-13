@@ -32,10 +32,7 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 
 -- Table entity
 CREATE TABLE IF NOT EXISTS public.entity (
-    entity_id INT NOT NULL PRIMARY KEY,
-    model_id INT NOT NULL,
-
-    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
+    entity_id INT NOT NULL PRIMARY KEY
 );
 
 
