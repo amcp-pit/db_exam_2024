@@ -9,6 +9,7 @@ drop table public.param;
 drop table public.entityinfo;
 drop table public.entity;
 drop table public.sketch;
+drop table public.point;
 drop table public.plane;
 drop table public.access_list;
 drop table public.model;

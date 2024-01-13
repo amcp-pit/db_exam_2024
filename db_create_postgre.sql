@@ -22,6 +22,7 @@ create table public.access_list (
 	foreign key (user_) references public.user ( iduser ) ON DELETE CASCADE ON UPDATE cascade,
 	foreign key (model_) references model ( idmodel ) ON DELETE CASCADE ON UPDATE cascade);
 
+
 create table public.plane (
 	idplane int not null,
 	xpoint DOUBLE PRECISION NOT null,
@@ -51,10 +52,13 @@ create table public.sketch (
 
 CREATE TABLE public.entity (
    identity  int NOT NULL,
-   model_  INT NOT NULL,
-  PRIMARY KEY ( identity ),
-  FOREIGN KEY ( model_ ) REFERENCES  model ( idmodel ) ON DELETE CASCADE ON UPDATE CASCADE);
+  PRIMARY KEY ( identity ));
 
+create table public.point (
+	idpoint int not null,
+	plane_ int not null,
+	PRIMARY KEY ( idpoint ),
+	foreign key (plane_) references plane ( idplane ) ON DELETE CASCADE ON UPDATE cascade);
 
 CREATE TABLE public.entityinfo (
 	entity_ int not null,
@@ -78,6 +82,7 @@ CREATE TABLE  public.object  (
    idobject  int NOT NULL,
    objtype  SMALLINT NOT NULL,
    idparent int,
+   num int,
   PRIMARY KEY ( idobject ),
   FOREIGN KEY ( objtype ) REFERENCES  objtype  ( idobjtype ) ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY ( idobject ) REFERENCES  entity  ( identity )  ON DELETE CASCADE ON UPDATE CASCADE,
