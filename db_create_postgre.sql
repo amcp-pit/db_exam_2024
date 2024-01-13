@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS public.sketch (
 );
 
 
--- Table sketch_entity
+-- Table entity
 CREATE TABLE IF NOT EXISTS public.entity (
     entity_id INT NOT NULL PRIMARY KEY,
     sketch_id INT NOT NULL,
