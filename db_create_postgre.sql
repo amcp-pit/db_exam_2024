@@ -30,12 +30,21 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 );
 
 
--- Table entity
-CREATE TABLE IF NOT EXISTS public.entity (
-    entity_id INT NOT NULL PRIMARY KEY,
+-- Table sketch
+CREATE TABLE IF NOT EXISTS public.sketch (
+    sketch_id INT NOT NULL PRIMARY KEY,
     model_id INT NOT NULL,
 
     FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- Table entity
+CREATE TABLE IF NOT EXISTS public.entity (
+    entity_id INT NOT NULL PRIMARY KEY,
+    sketch_id INT NOT NULL,
+
+    FOREIGN KEY (sketch_id) REFERENCES sketch(sketch_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -44,33 +53,34 @@ CREATE TABLE IF NOT EXISTS public.plane (
     plane_id INT NOT NULL PRIMARY KEY,
     model_id INT NOT NULL,
     point_id INT NULL,
-    vector1_id INT NOT NULL,
-    vector2_id INT NOT NULL,
+
+    vector1_x0 DOUBLE PRECISION NOT NULL,
+    vector1_y0 DOUBLE PRECISION NOT NULL,
+    vector1_z0 DOUBLE PRECISION NOT NULL,
+    vector1_x DOUBLE PRECISION NOT NULL,
+    vector1_y DOUBLE PRECISION NOT NULL,
+    vector1_z DOUBLE PRECISION NOT NULL,
+
+    vector2_x0 DOUBLE PRECISION NOT NULL,
+    vector2_y0 DOUBLE PRECISION NOT NULL,
+    vector2_z0 DOUBLE PRECISION NOT NULL,
+    vector2_x DOUBLE PRECISION NOT NULL,
+    vector2_y DOUBLE PRECISION NOT NULL,
+    vector2_z DOUBLE PRECISION NOT NULL,
 
     FOREIGN KEY (point_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (vector1_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (vector2_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
--- Table sketch
-CREATE TABLE IF NOT EXISTS public.sketch (
-    sketch_id INT NOT NULL PRIMARY KEY,
+-- Table sketch_plane
+CREATE TABLE IF NOT EXISTS public.sketch_plane (
+    sketch_id INT NOT NULL,
     plane_id INT NOT NULL,
 
-    FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
--- Table sketch_entity
-CREATE TABLE IF NOT EXISTS public.sketch_entity (
-    entity_id INT NOT NULL,
-    sketch_id INT NOT NULL,
-
-    PRIMARY KEY (entity_id, sketch_id),
+    PRIMARY KEY (plane_id, sketch_id),
     FOREIGN KEY (sketch_id) REFERENCES sketch(sketch_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (entity_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -96,6 +106,18 @@ CREATE TABLE IF NOT EXISTS public.object  (
     parent_id INT,
 
     FOREIGN KEY (object_type_id) REFERENCES object_type(object_type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES "object"(object_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- Table object_order
+CREATE TABLE IF NOT EXISTS public.object_order  (
+    object_id INT NOT NULL,
+    parent_id INT NOT NULL,
+    num INT,
+
+    PRIMARY KEY (object_id, parent_id),
     FOREIGN KEY (object_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (parent_id) REFERENCES "object"(object_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
