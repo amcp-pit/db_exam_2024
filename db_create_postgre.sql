@@ -30,21 +30,12 @@ CREATE TABLE IF NOT EXISTS public.access_list (
 );
 
 
--- Table sketch
-CREATE TABLE IF NOT EXISTS public.sketch (
-    sketch_id INT NOT NULL PRIMARY KEY,
-    model_id INT NOT NULL,
-
-    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
 -- Table entity
 CREATE TABLE IF NOT EXISTS public.entity (
     entity_id INT NOT NULL PRIMARY KEY,
-    sketch_id INT NOT NULL,
+    model_id INT NOT NULL,
 
-    FOREIGN KEY (sketch_id) REFERENCES sketch(sketch_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (model_id) REFERENCES model(model_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -54,16 +45,10 @@ CREATE TABLE IF NOT EXISTS public.plane (
     model_id INT NOT NULL,
     point_id INT NULL,
 
-    vector1_x0 DOUBLE PRECISION NOT NULL,
-    vector1_y0 DOUBLE PRECISION NOT NULL,
-    vector1_z0 DOUBLE PRECISION NOT NULL,
     vector1_x DOUBLE PRECISION NOT NULL,
     vector1_y DOUBLE PRECISION NOT NULL,
     vector1_z DOUBLE PRECISION NOT NULL,
 
-    vector2_x0 DOUBLE PRECISION NOT NULL,
-    vector2_y0 DOUBLE PRECISION NOT NULL,
-    vector2_z0 DOUBLE PRECISION NOT NULL,
     vector2_x DOUBLE PRECISION NOT NULL,
     vector2_y DOUBLE PRECISION NOT NULL,
     vector2_z DOUBLE PRECISION NOT NULL,
@@ -73,14 +58,23 @@ CREATE TABLE IF NOT EXISTS public.plane (
 );
 
 
--- Table sketch_plane
-CREATE TABLE IF NOT EXISTS public.sketch_plane (
-    sketch_id INT NOT NULL,
+-- Table sketch
+CREATE TABLE IF NOT EXISTS public.sketch (
+    sketch_id INT NOT NULL PRIMARY KEY,
     plane_id INT NOT NULL,
 
-    PRIMARY KEY (plane_id, sketch_id),
-    FOREIGN KEY (sketch_id) REFERENCES sketch(sketch_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (plane_id) REFERENCES plane(plane_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- Table sketch_entity
+CREATE TABLE IF NOT EXISTS public.sketch_entity (
+    entity_id INT NOT NULL,
+    sketch_id INT NOT NULL,
+
+    PRIMARY KEY (entity_id, sketch_id),
+    FOREIGN KEY (sketch_id) REFERENCES sketch(sketch_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (entity_id) REFERENCES entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 

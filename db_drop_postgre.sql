@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS public.object_type CASCADE;
 DROP TABLE IF EXISTS public.param CASCADE;
 DROP TABLE IF EXISTS public.sketch_plane CASCADE;
 DROP TABLE IF EXISTS public.plane CASCADE;
+DROP TABLE IF EXISTS public.sketch_entity CASCADE;
 DROP TABLE IF EXISTS public.sketch CASCADE;
 DROP TABLE IF EXISTS public.entity CASCADE;
 DROP TABLE IF EXISTS public.access_list CASCADE;
