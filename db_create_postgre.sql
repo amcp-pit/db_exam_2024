@@ -23,11 +23,16 @@ create table public.access_list (
 	foreign key (model_) references model ( idmodel ) ON DELETE CASCADE ON UPDATE cascade);
 
 
+create table public.plane_point (
+	idpoint int not null,
+	xpoint DOUBLE PRECISION,
+	ypoint DOUBLE PRECISION,
+	zpoint DOUBLE PRECISION,
+	PRIMARY KEY (idpoint)
+);
+
 create table public.plane (
 	idplane int not null,
-	xpoint DOUBLE PRECISION NOT null,
-	ypoint DOUBLE PRECISION NOT null,
-	zpoint DOUBLE PRECISION NOT null,
 	e1x1 DOUBLE PRECISION NOT null,
 	e1y1 DOUBLE PRECISION NOT null,
 	e1z1 DOUBLE PRECISION NOT null,
@@ -40,9 +45,13 @@ create table public.plane (
 	e2x2 DOUBLE PRECISION NOT null,
 	e2y2 DOUBLE PRECISION NOT null,
 	e2z2 DOUBLE PRECISION NOT null,
+	point_ int,
 	model_ int not null,
 	PRIMARY KEY (idplane),
-	foreign key (model_) references model ( idmodel ) ON DELETE CASCADE ON UPDATE cascade);
+	foreign key (model_) references model ( idmodel ) ON DELETE CASCADE ON UPDATE cascade,
+	foreign key (point_) references plane_point ( idpoint ) ON DELETE CASCADE ON UPDATE cascade);
+
+
 
 create table public.sketch (
 	idsketch int not null,
@@ -52,20 +61,10 @@ create table public.sketch (
 
 CREATE TABLE public.entity (
    identity  int NOT NULL,
-  PRIMARY KEY ( identity ));
+   sketch_ int not null,
+  PRIMARY KEY ( identity ),
+   FOREIGN KEY ( sketch_ ) REFERENCES  sketch ( idsketch)  ON DELETE CASCADE ON UPDATE CASCADE);
 
-create table public.point (
-	idpoint int not null,
-	plane_ int not null,
-	PRIMARY KEY ( idpoint ),
-	foreign key (plane_) references plane ( idplane ) ON DELETE CASCADE ON UPDATE cascade);
-
-CREATE TABLE public.entityinfo (
-	entity_ int not null,
-	sketch_ int not null,
-	PRIMARY KEY ( entity_, sketch_ ),
-	FOREIGN KEY ( entity_ ) REFERENCES  entity  ( identity )  ON DELETE CASCADE ON UPDATE CASCADE,
-  	FOREIGN KEY ( sketch_ ) REFERENCES  sketch ( idsketch)  ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE  public.param  (
    idparam  int NOT NULL,
