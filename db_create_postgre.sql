@@ -148,10 +148,10 @@ CREATE TABLE IF NOT EXISTS public.constraint_param  (
 ALTER TABLE public.plane ADD CONSTRAINT fk_plane_object FOREIGN KEY (point_id) REFERENCES object(object_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (1,'Point',3);
-INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (2,'Segment',6);
-INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (3,'Circle',7);
-INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (4,'Arc',9); 
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (1,'Point',2);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (2,'Segment',4);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (3,'Circle',3);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (4,'Arc',5); 
 
 INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (0,'Fixed',false);
 INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (1,'Equal',false);
