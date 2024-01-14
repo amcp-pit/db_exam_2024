@@ -146,3 +146,29 @@ CREATE TABLE IF NOT EXISTS public.constraint_param  (
 );
 
 ALTER TABLE public.plane ADD CONSTRAINT fk_plane_object FOREIGN KEY (point_id) REFERENCES object(object_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (1,'Point',2);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (2,'Segment',4);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (3,'Circle',3);
+INSERT INTO  "object_type" ("object_type_id","name","free_degree") VALUES (4,'Arc',5); 
+
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (0,'Fixed',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (1,'Equal',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (2,'Vertical',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (3,'Horizontal',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (4,'Parallel',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (5,'Ortho',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (6,'Tangent',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (7,'Coincident',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (8,'Midpoint',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (9,'Collinear',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (10,'Symmetric',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (11,'Concentric',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (12,'Arcbase',false);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (13,'Distance',true);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (14,'Angle',true);
+INSERT INTO "constraint_type" ("constraint_type_id","name","is_parametric") VALUES (15,'Dimension',true);
+
+
+
